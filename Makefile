@@ -67,8 +67,9 @@ clean:
 #########################################################################
 
 flash: firmware.bin
-	cp firmware.bin /Volumes/CRP\ DISABLD/
-	diskutil eject `diskutil list | grep -B 2 CRP | grep dev`
+	pmount /dev/disk/by-label/CRP\\x20DISABLD lpcflash
+	cp firmware.bin /media/lpcflash
+	pumount /media/lpcflash
 
 
 .PHONY : clean all flash
